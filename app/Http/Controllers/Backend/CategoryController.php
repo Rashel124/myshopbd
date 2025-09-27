@@ -22,9 +22,11 @@ class CategoryController extends Controller
     public function categoryStore (Request $request)
     {
         $category = new Category();
-
+     
         $category->name = $request->name;
         $category->slug = Str::slug($request->name);
+      
+         
 
         if(isset($request->image)){
             $imageName = rand().'-category-'.'.'.$request->image->extension(); //12345-category-.webp
