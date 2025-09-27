@@ -51,17 +51,15 @@
 
                                     <select class="form-control" name="cat-id" id="cat-id">
 
-                                        <option>Category1</option>
-                                         <option>Category2</option>
-                                          <option>Category3</option>
+                                        <option Selected disabled>Select Category</option>
+                                        @foreach ($categories as $category)
+                                            <option value="{{$category->id}}">{{$category->name}}</option>
+                                        @endforeach
                                     </select>
 
                                 </div>
 
-                                <div class="input-group mb-3">
-                                    <input type="file" class="form-control" name="image" id="image" required />
-                                    <label class="input-group-text" for="inputGroupFile02">Upload</label>
-                                </div>
+                            
                             </div>
                             <!--end::Body-->
                             <!--begin::Footer-->
