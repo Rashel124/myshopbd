@@ -8,12 +8,12 @@
             <!--begin::Row-->
             <div class="row">
                 <div class="col-sm-6">
-                    <h3 class="mb-0">Add New SubCategory</h3>
+                    <h3 class="mb-0">Edit Gallery Image ({{$galleryImage->product->name}})</h3>
                 </div>
                 <div class="col-sm-6">
                     <ol class="breadcrumb float-sm-end">
                         <li class="breadcrumb-item"><a href="#">Home</a></li>
-                        <li class="breadcrumb-item active" aria-current="page">Add New SubCategory</li>
+                        <li class="breadcrumb-item active" aria-current="page">Edit Gallery Image</li>
                     </ol>
                 </div>
             </div>
@@ -34,33 +34,24 @@
                     <div class="card card-primary card-outline mb-4">
                         <!--begin::Header-->
                         <div class="card-header">
-                            <div class="card-title">Input SubCategory</div>
+                            <div class="card-title">Input Image</div>
                         </div>
                         <!--end::Header-->
                         <!--begin::Form-->
-                        <form action="{{url('/admin/sub-category/store')}}" method="POST" enctype="multipart/form-data">
+                        <form action="{{url('/admin/product/gallery-image/update/'.$galleryImage->id)}}" method="POST" enctype="multipart/form-data">
                             @csrf
                             <!--begin::Body-->
                             <div class="card-body">
-                                <div class="mb-3">
-                                    <label for="name" class="form-label">SubCategory Name*</label>
-                                    <input type="text" class="form-control" name="name" id="name" required/>
+                                <div class="input-group mb-3">
+                                    <input type="file" class="form-control" name="image" id="image" required/>
+                                    <label class="input-group-text" for="inputGroupFile02">Upload</label>
                                 </div>
-
-                                <div class="mb-3">
-                                    <label for="cat_id" class="form-label">Select Category*</label>
-                                    <select class="form-control" name="cat_id" id="cat_id">
-                                        <option selected disabled>Select Category</option>
-                                        @foreach ($categories as $category)
-                                            <option value="{{$category->id}}">{{$category->name}}</option>
-                                        @endforeach
-                                    </select>
-                                </div>
+                                <img src="{{asset('backend/images/galleryimage/'.$galleryImage->image)}}" height="130" width="130">
                             </div>
                             <!--end::Body-->
                             <!--begin::Footer-->
                             <div class="card-footer">
-                                <button type="submit" class="btn btn-primary">Submit</button>
+                                <button type="submit" class="btn btn-primary">Update</button>
                             </div>
                             <!--end::Footer-->
                         </form>
