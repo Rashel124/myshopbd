@@ -38,24 +38,28 @@
                         </div>
                         <!--end::Header-->
                         <!--begin::Form-->
-                        <form action="{{url('/admin/sub-category/store')}}" method="POST" enctype="multipart/form-data">
+                        <form action="{{ url('/admin/subcategory/store') }}" method="POST" enctype="multipart/form-data">
                             @csrf
                             <!--begin::Body-->
                             <div class="card-body">
                                 <div class="mb-3">
                                     <label for="name" class="form-label">SubCategory Name*</label>
-                                    <input type="text" class="form-control" name="name" id="name" required/>
+                                    <input type="text" class="form-control" name="name" id="name" required />
                                 </div>
-
                                 <div class="mb-3">
                                     <label for="cat_id" class="form-label">Select Category*</label>
-                                    <select class="form-control" name="cat_id" id="cat_id">
-                                        <option selected disabled>Select Category</option>
+
+                                    <select class="form-control" name="cat-id" id="cat-id">
+
+                                        <option Selected disabled>Select Category</option>
                                         @foreach ($categories as $category)
                                             <option value="{{$category->id}}">{{$category->name}}</option>
                                         @endforeach
                                     </select>
+
                                 </div>
+
+                            
                             </div>
                             <!--end::Body-->
                             <!--begin::Footer-->
