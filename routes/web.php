@@ -3,19 +3,33 @@
 use App\Http\Controllers\Backend\AdminAuthController;
 use App\Http\Controllers\Backend\AdminController;
 use App\Http\Controllers\Backend\CategoryController;
+use App\Http\Controllers\Backend\OrderController;
 use App\Http\Controllers\Backend\ProductController;
+use App\Http\Controllers\Backend\SettingsController;
 use App\Http\Controllers\Backend\SubCategoryController;
 use App\Http\Controllers\FrontendController;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
 
 Route::get('/', [FrontendController::class, 'index']);
+Route::get('/category-products/{slug}/{id}', [FrontendController::class, 'categoryProducts']);
+Route::get('/subcategory-products/{slug}/{id}', [FrontendController::class, 'subCategoryProducts']);
 Route::get('/shop', [FrontendController::class, 'shopProducts']);
 Route::get('/return-process', [FrontendController::class, 'returnProcess']);
-Route::get('/product-details', [FrontendController::class, 'productDetails']);
+Route::get('/product-details/{slug}', [FrontendController::class, 'productDetails']);
 Route::get('/type-products/{type}', [FrontendController::class, 'typeProducts']);
 Route::get('/view-cart-products', [FrontendController::class, 'viewCart']);
 Route::get('/checkout', [FrontendController::class, 'checkOut']);
+
+//Order Placing Process...
+Route::post('/confirm-order', [FrontendController::class, 'confirmOrder']);
+Route::get('/success-order/{invoiceid}', [FrontendController::class, 'successOrder']);
+
+//Add to Cart Routes...
+Route::post('/product-details/add-to-cart/{product_id}', [FrontendController::class, 'addToCartDetails']);
+Route::get('/add-to-cart/{product_id}', [FrontendController::class, 'addToCart']);
+Route::get('/add-to-cart/delete/{id}', [FrontendController::class, 'addToCartDelete']);
 
 // Policy...
 Route::get('/privacy-policy', [FrontendController::class, 'privacyPolicy']);
@@ -24,14 +38,18 @@ Route::get('/refund-policy', [FrontendController::class, 'refundPolicy']);
 Route::get('/payment-policy', [FrontendController::class, 'paymentPolicy']);
 Route::get('/about-us', [FrontendController::class, 'aboutUs']);
 Route::get('/contact-us', [FrontendController::class, 'contactUs']);
+Route::post('/contact-message/store', [FrontendController::class, 'contactMessageStore']);
+
+//Product Searching...
+Route::get('/search-products', [FrontendController::class, 'searchProduct']);
 
 
 //Admin Auth Routes..
-Route::get('/admin/login', [AdminAuthController::class, 'loginForm']);
+Route::get('/admin/login', [AdminAuthController::class, 'loginForm'])->name('admin.login');
 Route::get('/admin/logout', [AdminAuthController::class, 'logoutAdmin']);
 
 
-Auth::routes();
+Auth::routes(['register' => false]);
 Route::get('/admin/dashboard', [AdminController::class, 'adminDashboard']);
 
 //Category routes...
@@ -57,3 +75,9 @@ Route::get('/admin/product/list', [ProductController::class, 'productList']);
 Route::get('/admin/product/delete/{id}', [ProductController::class, 'productDelete']);
 Route::get('/admin/product/edit/{id}', [ProductController::class, 'productEdit']);
 Route::post('/admin/product/update/{id}', [ProductController::class, 'productUpdate']);
+
+Route::get('/admin/product/color/delete/{id}', [ProductController::class, 'colorDelete']);
+Route::get('/admin/product/size/delete/{id}', [ProductController::class, 'sizeDelete']);
+Route::get('/admin/product/gallery-image/delete/{id}', [ProductController::class, 'galleryImageDelete']);
+Route::get('/admin/product/gallery-image/edit/{id}', [ProductController::class, 'galleryImageEdit']);
+Route::post('/admin/product/gallery-image/update/{id}', [ProductController::class, 'galleryImageUpdate']);

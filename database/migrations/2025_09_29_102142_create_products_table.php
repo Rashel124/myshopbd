@@ -18,7 +18,7 @@ return new class extends Migration
             $table->unsignedBigInteger('cat_id');
             $table->unsignedBigInteger('sub_cat_id');
             $table->double('regular_price');
-            $table->double('discount_price')->nullable();
+            $table->double('discount_price');
             $table->double('buying_price');
             $table->integer('qty');
             $table->string('sku_code')->unique();
