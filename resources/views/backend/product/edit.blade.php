@@ -76,22 +76,22 @@
                                     </div>
 
                                     <div class="col-6 mb-3">
-                                        <div class="form-group" id="color_fields">
-                                            <label for="color_name" class="form-label">Product Color (Optional)</label>
-                                            @foreach ($product->color as $singleColor)
-                                                <input type="text" class="form-control mb-2" value="{{$singleColor->color_name}}" name="color_name[]" id="color_name" value="" />
-                                                <a href="{{url('/admin/product/color/delete/'.$singleColor->id)}}" class="btn btn-danger mb-2">Delete</a>
-                                            @endforeach
+                                    <div class="form-group" id="color_fields">
+                                        <label for="color_name" class="form-label">Product Color (Optional)</label>
+                                        @foreach ($product->color as $singleColor)
+                                            <input type="text" class="form-control mb-2" value="{{ $singleColor->color_name }}" name="color_name[]" id="color_name" />
+                                            <a href="{{url('/admin/product/color/delete/'.$singleColor->id)}}" class="btn btn-danger mb-2"><i class="fas fa-trash-alt"></i></a>
+                                        @endforeach
                                         </div>
-                                        <button type="button" class="btn btn-success float-end" id="add_color">Add More</button>
-                                    </div>
+                                         <button type="button" class="btn btn-success float-end" id="add_color">Add More</button>
+                                     </div>
 
                                     <div class="col-6 mb-3">
                                         <div class="form-group" id="size_fields">
                                             <label for="size_name" class="form-label">Product Size (Optional)</label>
                                             @foreach ($product->size as $singleSize)
                                                 <input type="text" class="form-control mb-2" value="{{$singleSize->size_name}}" name="size_name[]" id="size_name" value="" />
-                                                <a href="{{url('/admin/product/size/delete/'.$singleSize->id)}}" class="btn btn-danger mb-2">Delete</a>
+                                                <a href="{{url('/admin/product/size/delete/'.$singleSize->id)}}" class="btn btn-danger mb-2"><i class="fas fa-trash-alt"></i></a>
                                             @endforeach
                                         </div>
                                         <button type="button" class="btn btn-success float-end" id="add_size">Add More</button>
@@ -99,7 +99,7 @@
 
                                     <div class="col-6 mb-3">
                                         <label for="qty" class="form-label">Product Quantity*</label>
-                                        <input type="number" value="{{$product->qty}}" class="form-control" name="qty" id="qty" required />
+                                        <input type="number" class="form-control" value="{{$product->qty}}" name="qty" id="qty" required />
                                     </div>
 
                                     <div class="col-6 mb-3">
@@ -130,13 +130,15 @@
                                             <option value="new" @if ($product->product_type == "new")
                                                 selected
                                             @endif>New Arrival</option>
-                                            <option value="discount" @selected($product->product_type == "discount")>Discount Product</option>
+                                            <option value="discount" @if ($product->product_type == "discount")
+                                                selected 
+                                            @endif>Discount Product</option>
                                         </select>
                                     </div>
 
                                     <div class="col-12 mb-3">
                                         <label for="description" class="form-label">Product Description*</label>
-                                        <textarea name="description" id="summernote"  class="form-control" required>{{$product->description}}</textarea>
+                                        <textarea name="description" id="summernote" class="form-control" required>{{$product->description}}</textarea>
                                     </div>
 
                                     <div class="col-12 mb-3">
@@ -145,19 +147,19 @@
                                     </div>
 
                                     <div class="input-group mb-3">
-                                        <input type="file" class="form-control" accept="image/*" name="image" id="image" />
-                                        <label class="input-group-text" for="inputGroupFile02">Upload Main Image</label>
+                                        <input type="file" class="form-control" accept="image/*" name="image" id="image"/>
                                         <img src="{{asset('backend/images/product/'.$product->image)}}" height="100" width="100">
+                                        <label class="input-group-text" for="inputGroupFile02">Upload Main Image</label>
                                     </div>
 
                                     <div class="input-group mb-3">
-                                        <input type="file" class="form-control" accept="image/*" name="gallery_image[]" id="gallery_image" multiple />
+                                        <input type="file" class="form-control" accept="image/*" name="gallery_image[]" id="gallery_image" multiple/>
                                         <label class="input-group-text" for="gallery_image">Upload Gallery Image</label>
                                         @foreach ($product->galleryImage as $singleImage)
-                                            <img src="{{asset('backend/images/galleryimage/'.$singleImage->image)}}" height="100" class="mb-2" width="100">
-                                            <div class="mb-2">
-                                                <a href="{{url('/admin/product/gallery-image/delete/'.$singleImage->id)}}" class="btn btn-danger">Delete</a>
-                                                <a href="{{url('/admin/product/gallery-image/edit/'.$singleImage->id)}}" class="btn btn-info">Edit</a>
+                                            <img src="{{asset('backend/images/galleryimage/'.$singleImage->image)}}" class="mt-2" height="100" width="100">
+                                            <div>
+                                                <a href="{{url('/admin/product/galleryimage/delete/'.$singleImage->id)}}" class="btn btn-danger mt-2"><i class="fas fa-trash-alt"></i></a>
+                                                <a href="{{url('/admin/product/galleryimage/edit/'.$singleImage->id)}}" class="btn btn-info mt-2"><i class="fa-solid fa-pen-to-square"></i></a>
                                             </div>
                                         @endforeach
                                     </div>
@@ -216,8 +218,4 @@
         })
     })
 </script>
-<<<<<<< HEAD
 @endpush
-=======
-@endpush
->>>>>>> 82d45725992da4c6ed1b302ecae07eb8a760b52b

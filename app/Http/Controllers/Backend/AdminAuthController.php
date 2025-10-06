@@ -1,22 +1,21 @@
 <?php
 
-namespace App\Http\Controllers\Backend;
+namespace App\Http\Controllers\backend;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Redirect;
 
-class AdminAuthController extends Controller
+class adminauthcontroller extends Controller
 {
-    public function loginForm()
-    {
+    public function adminlogin(){
         return view('backend.admin-login');
     }
-
-    public function logoutAdmin ()
+    public function adminlogout()
     {
         Auth::logout();
-
+    
         return redirect('/admin/login');
     }
 }

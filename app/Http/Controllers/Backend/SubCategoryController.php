@@ -30,7 +30,7 @@ class SubCategoryController extends Controller
         $subCategory->cat_id = $request->cat_id;
 
         $subCategory->save();
-        return redirect()->back();
+        return redirect('/admin/sub-category/list');
     }
 
     public function subCategoryList ()

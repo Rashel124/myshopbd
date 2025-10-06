@@ -3,33 +3,26 @@
   <!--begin::Head-->
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <title>Dashboard</title>
-
-    @include('backend.includes.style')
+    <title>E-commerce</title>
+    @include('backend.include.style')
   </head>
   <!--end::Head-->
   <!--begin::Body-->
   <body class="layout-fixed sidebar-expand-lg bg-body-tertiary">
     <!--begin::App Wrapper-->
     <div class="app-wrapper">
-      <!--begin::Header-->
-      @include('backend.includes.navbar')
-      <!--end::Header-->
-      <!--begin::Sidebar-->
-      @include('backend.includes.sidebar')
-      <!--end::Sidebar-->
+      @include('backend.include.navber')
+    @include("backend.include.sidebar")
       <!--begin::App Main-->
       <main class="app-main">
-        @yield('content')
+       @yield('content')
       </main>
       <!--end::App Main-->
-      <!--begin::Footer-->
-      @include('backend.includes.footer')
-      <!--end::Footer-->
+    @include('backend.include.footer')
     </div>
     <!--end::App Wrapper-->
-    
-    @include('backend.includes.script')
+   @include('backend.include.script')
+   @stack('script')
   </body>
   <!--end::Body-->
 </html>

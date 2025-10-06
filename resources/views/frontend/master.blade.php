@@ -4,19 +4,15 @@
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<title>E-commerce Website</title>
-
-    @include('frontend.includes.style')
+	@include('frontend.include.style')
 </head>
 <body>
-	@include('frontend.includes.header')
-
+	@include('frontend.include.header')
 	<main>
         @yield('content')
 	</main>
-
-	@include('frontend.includes.footer')
-
-    @include('frontend.includes.script')
-	
+	@include('frontend.include.footer')
+    @include('frontend.include.script')
+	@stack('script')
 </body>
 </html>

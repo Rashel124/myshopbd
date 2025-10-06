@@ -1,116 +1,154 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Admin Login</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-
-    <style>
-        @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&family=Rajdhani:wght@300;500;700&display=swap');
-
-        :root {
-            --neon-pink: #ff2a6d;
-            --neon-blue: #05d9e8;
-            --dark-bg: #0d0221;
-        }
-
-        body {
-            font-family: 'Rajdhani', sans-serif;
-            background-color: var(--dark-bg);
-            color: white;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-            margin: 0;
-        }
-
-        .login-container {
-            background-color: rgba(0, 0, 0, 0.5);
-            padding: 20px;
-            border-radius: 8px;
-            border: 2px solid var(--neon-blue);
-            box-shadow: 0 0 10px var(--neon-blue), inset 0 0 10px var(--neon-blue);
-            width: 300px;
-        }
-
-        .login-container h2 {
-            text-align: center;
-            color: var(--neon-pink);
-            font-family: 'Orbitron', sans-serif;
-            text-shadow: 0 0 5px var(--neon-pink);
-            margin-bottom: 20px;
-        }
-
-        .form-group {
-            margin-bottom: 15px;
-        }
-
-        .form-group label {
-            display: block;
-            margin-bottom: 5px;
-            color: var(--neon-blue);
-            text-shadow: 0 0 5px var(--neon-blue);
-        }
-
-        .form-group input {
-            width: 100%;
-            padding: 8px;
-            border: 1px solid var(--neon-blue);
-            border-radius: 4px;
-            box-sizing: border-box;
-            background-color: rgba(0, 0, 0, 0.3);
-            color: white;
-        }
-
-        .form-group button {
-            background-color: var(--neon-pink);
-            color: black;
-            padding: 10px 15px;
-            border: none;
-            border-radius: 4px;
-            cursor: pointer;
-            width: 100%;
-            font-family: 'Orbitron', sans-serif;
-            font-weight: bold;
-            transition: background-color 0.3s ease;
-        }
-
-        .form-group button:hover {
-            background-color: #ff598f;
-        }
-
-        .error-message {
-            color: var(--neon-pink);
-            margin-top: 10px;
-            text-align: center;
-            text-shadow: 0 0 5px var(--neon-pink);
-        }
-    </style>
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>admin-login</title>
 </head>
+<style>
+    @import url("https://fonts.googleapis.com/css2?family=Quicksand:wght@300&display=swap");
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Quicksand", sans-serif;
+}
+body {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  background: #111;
+  width: 100%;
+  overflow: hidden;
+}
+.ring {
+  position: relative;
+  width: 500px;
+  height: 500px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.ring i {
+  position: absolute;
+  inset: 0;
+  border: 2px solid #fff;
+  transition: 0.5s;
+}
+.ring i:nth-child(1) {
+  border-radius: 38% 62% 63% 37% / 41% 44% 56% 59%;
+  animation: animate 6s linear infinite;
+}
+.ring i:nth-child(2) {
+  border-radius: 41% 44% 56% 59%/38% 62% 63% 37%;
+  animation: animate 4s linear infinite;
+}
+.ring i:nth-child(3) {
+  border-radius: 41% 44% 56% 59%/38% 62% 63% 37%;
+  animation: animate2 10s linear infinite;
+}
+.ring:hover i {
+  border: 6px solid var(--clr);
+  filter: drop-shadow(0 0 20px var(--clr));
+}
+@keyframes animate {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+@keyframes animate2 {
+  0% {
+    transform: rotate(360deg);
+  }
+  100% {
+    transform: rotate(0deg);
+  }
+}
+.login {
+  position: absolute;
+  width: 300px;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  gap: 20px;
+}
+.login h2 {
+  font-size: 2em;
+  color: #fff;
+}
+.login .inputBx {
+  position: relative;
+  width: 100%;
+}
+.login .inputBx input {
+  position: relative;
+  width: 100%;
+  padding: 12px 20px;
+  background: transparent;
+  border: 2px solid #fff;
+  border-radius: 40px;
+  font-size: 1.2em;
+  color: #fff;
+  box-shadow: none;
+  outline: none;
+}
+.login .inputBx input[type="submit"] {
+  width: 100%;
+  background: #0078ff;
+  background: linear-gradient(45deg, #ff357a, #fff172);
+  border: none;
+  cursor: pointer;
+}
+.login .inputBx input::placeholder {
+  color: rgba(255, 255, 255, 0.75);
+}
+.login .links {
+  position: relative;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 20px;
+}
+.login .links a {
+  color: #fff;
+  text-decoration: none;
+}
 
+</style>
 <body>
-    <div class="login-container">
-        <h2>LOGIN</h2>
-        <form id="loginForm" action="{{ route('login') }}" method="POST">
-            @csrf
-            <div class="form-group">
-                <label for="username">Username:</label>
-                <input type="text" id="username" name="email" required>
-            </div>
-            <div class="form-group">
-                <label for="password">Password:</label>
-                <input type="password" id="password" name="password" required>
-            </div>
-            <div class="form-group">
-                <button type="submit">Login</button>
-            </div>
-            <div id="error-message" class="error-message"></div>
-        </form>
+    <!--ring div starts here-->
+    <form action="{{ route('login') }}" method="POST">
+        @csrf
+<div class="ring">
+  <i style="--clr:#00ff0a;"></i>
+  <i style="--clr:#ff0057;"></i>
+  <i style="--clr:#fffd44;"></i>
+  <div class="login">
+    <h2>Admin Login</h2>
+    <div class="inputBx">
+      <input type="text" placeholder="Email" name="email" required>
     </div>
+    <div class="inputBx">
+      <input type="password" placeholder="Password" name="password" required>
+    </div>
+    <div class="inputBx">
+      <input type="submit" value="Login">
+    </div>
+    </form>
+    <div class="links">
+      <a href="#">Forget Password</a>
+      <a href="#">Signup</a>
+    </div>
+  </div>
+</div>
+<!--ring div ends here-->
 </body>
-
 </html>
